@@ -9,4 +9,3 @@ export const pool = new Pool({
     rejectUnauthorized: false,
   },
 })
-// console.log(pool);

@@ -8,9 +8,12 @@ Sistema de control de gastos personales con arquitectura modular basada en Node.
 - **TypeScript** para tipado estático y mejor desarrollo
 - **Arquitectura modular** con separación de responsabilidades
 - **CORS configurado** para frontend específico
-- **Validación de datos** con express-validator
+- **Validación de datos** con Zod y express-validator
 - **Logging** con Morgan
 - **Gestión de variables de entorno** con dotenv
+- **Documentación API** con Swagger UI
+- **Base de datos PostgreSQL** con conexión pool
+- **Validación de entrada** robusta y tipada
 
 ## 📁 Estructura del Proyecto
 
@@ -51,6 +54,9 @@ system-backend/
 - **CORS** - Cross-Origin Resource Sharing
 - **dotenv** - Gestión de variables de entorno
 - **express-validator** - Validación de datos
+- **Zod** - Validación de esquemas tipados
+- **Swagger UI** - Documentación de API interactiva
+- **PostgreSQL** - Base de datos relacional
 
 ## 📋 Prerrequisitos
 
@@ -111,11 +117,24 @@ pnpm start
 ## 📚 Módulos Disponibles
 
 ### Accounts (Cuentas)
-- Gestión de cuentas de usuario
+- Gestión completa de cuentas de usuario
+- CRUD de cuentas con validación
 - Endpoint: `/api/accounts`
+- Operaciones:
+  - `GET /api/accounts` - Obtener todas las cuentas
+  - `GET /api/accounts/:account_id` - Obtener cuenta por ID
+  - `POST /api/accounts` - Crear nueva cuenta
+  - `PUT /api/accounts/:account_id` - Actualizar cuenta existente
 
 ### Categories (Categorías)
 - Clasificación de gastos e ingresos
+- Gestión de categorías con tipos (Ingreso/Egreso)
+- Endpoint: `/api/categories`
+- Operaciones:
+  - `GET /api/categories` - Obtener todas las categorías
+  - `GET /api/categories/:category_id` - Obtener categoría por ID
+  - `POST /api/categories` - Crear nueva categoría
+  - `PUT /api/categories/:category_id` - Actualizar categoría existente
 
 ### Credit Card (Tarjetas de Crédito)
 - Gestión de tarjetas de crédito
@@ -130,21 +149,44 @@ pnpm start
 - Registro de transacciones
 - Límites y control
 
-## 🏗️ Arquitectura
+## � Documentación API
 
-El proyecto sigue una arquitectura modular con:
+La API cuenta con documentación interactiva mediante Swagger UI:
 
-- **Controllers**: Lógica de negocio y manejo de requests
-- **Models**: Definición de datos y estructuras
-- **Repository**: Acceso a datos y persistencia
-- **Services**: Lógica de negocio compleja
-- **Routes**: Definición de endpoints y middleware
+- **URL**: `http://localhost:4000/api/docs`
+- **Características**:
+  - Exploración interactiva de endpoints
+  - Esquemas de datos detallados
+  - Prueba directa desde la interfaz
+  - Documentación de respuestas y errores
+
+## Vista de la documentación
+<img src="./src/public//screen-docs.webp" alt="Documentación" width="400">
 
 ## 🔌 API Endpoints
 
 ### Accounts
 - `GET /api/accounts` - Obtener todas las cuentas
+- `GET /api/accounts/:account_id` - Obtener cuenta por ID
+- `POST /api/accounts` - Crear nueva cuenta
+- `PUT /api/accounts/:account_id` - Actualizar cuenta existente
 
+### Categories
+- `GET /api/categories` - Obtener todas las categorías
+- `GET /api/categories/:category_id` - Obtener categoría por ID
+- `POST /api/categories` - Crear nueva categoría
+- `PUT /api/categories/:category_id` - Actualizar categoría existente
+
+## �️ Arquitectura
+
+El proyecto sigue una arquitectura modular con:
+
+- **Controllers**: Lógica de negocio y manejo de requests
+- **Models**: Definición de datos y estructuras con Zod
+- **Repository**: Acceso a datos y persistencia en PostgreSQL
+- **Services**: Lógica de negocio compleja
+- **Routes**: Definición de endpoints y middleware de validación
+- **Middleware**: Validación de entrada y manejo de errores
 *(Más endpoints serán agregados según se desarrollen los módulos)*
 
 ## 🧪 Testing
@@ -168,7 +210,6 @@ pnpm test
 3. Commit cambios (`git commit -m 'Añadir nueva funcionalidad'`)
 4. Push a la branch (`git push origin feature/nueva-funcionalidad`)
 5. Abrir Pull Request
-
 ## 📄 Licencia
 
 Este proyecto está bajo licencia ISC.
@@ -178,9 +219,31 @@ Este proyecto está bajo licencia ISC.
 El proyecto está en desarrollo activo. Actualmente implementado:
 
 - ✅ Configuración básica del servidor
-- ✅ Estructura modular
-- ✅ Módulo de cuentas básico
+- ✅ Estructura modular completa
+- ✅ Módulo de cuentas con CRUD completo
+- ✅ Módulo de categorías con CRUD completo
+- ✅ Validación de datos con Zod
+- ✅ Documentación Swagger UI
+- ✅ Conexión a base de datos PostgreSQL
 - 🔄 Desarrollo de otros módulos en progreso
+
+## 🚀 Características Técnicas Implementadas
+
+### Validación y Seguridad
+- **Validación de entrada** con Zod schemas tipados
+- **Validación adicional** con express-validator en rutas
+- **Manejo de errores** centralizado y consistente
+- **CORS configurado** para dominios específicos
+
+### Base de Datos
+- **PostgreSQL** como motor de base de datos
+- **Connection pooling** para optimización de rendimiento
+- **Queries parametrizadas** para prevención de SQL injection
+
+### Documentación
+- **Swagger UI** integrado para documentación interactiva
+- **Esquemas automáticos** generados desde los modelos
+- **Documentación de endpoints** con ejemplos y respuestas
 
 ---
 

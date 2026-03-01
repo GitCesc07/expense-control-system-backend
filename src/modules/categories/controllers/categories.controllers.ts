@@ -1,32 +1,32 @@
 import { Request, Response } from "express";
-import { AccountsServices } from "../services/accounts.services";
-import { accountSchema } from "../index";
+import { CategoryServices } from "../services/categories.services";
+import { categorySchema } from "../index";
 
-const services = new AccountsServices();
+const services = new CategoryServices();
 
-export class AccountsController {
-    static async getAllAccounts(req: Request, res: Response) {
+export class CategoriesController {
+    static async getAllCategories(req: Request, res: Response) {
         try {
-            const data = await services.getAllAccount();
+            const data = await services.getAllCategory();
             res.json(data);
         } catch (error: unknown) {
             res.status(500).json({ error: "Ha ocurrido un error inesperado. se ha encontrado un problema en el servidor." });
         }
     }
 
-    static async getAccountsById(req: Request, res: Response) {
+    static async getCategoriesById(req: Request, res: Response) {
         try {
-            const data = await services.getAccountById({ account_id: req.params.account_id });
+            const data = await services.getCategoryById({ category_id: req.params.category_id });
             res.json(data);
         } catch (error: unknown) {
             res.status(500).json({ error: "Ha ocurrido un error inesperado. se ha encontrado un problema en el servidor." });
         }
     }
 
-    static async createAccount(req: Request, res: Response) {
+    static async createCategory(req: Request, res: Response) {
         try {
             // * Validar los datos de entrada con Zod
-            const validationResult = accountSchema.safeParse(req.body);
+            const validationResult = categorySchema.safeParse(req.body);
 
             if (!validationResult.success) {
                 // * Extraer y formatear los mensajes de error de Zod
@@ -38,12 +38,12 @@ export class AccountsController {
                 return res.status(400).json({
                     success: false,
                     message: "Error de validación",
-                    errors: errorMessages
+                    errors: errorMessages                    
                 });
             }
 
-            // * Si la validación es exitosa, crear la cuenta
-            const data = await services.createAccount({ accountData: req.body });
+            // * Si la validación es exitosa, crear la categoría
+            const data = await services.createCategory({ categoryData: req.body });
             res.status(201).json({
                 success: true,
                 message: data.message
@@ -57,10 +57,10 @@ export class AccountsController {
         }
     }
 
-    static async updateAccount(req: Request, res: Response) {
+    static async updateCategory(req: Request, res: Response) {
         try {
             // * Validar los datos de entrada con Zod
-            const validationResult = accountSchema.safeParse(req.body);
+            const validationResult = categorySchema.safeParse(req.body);
 
             if (!validationResult.success) {
                 // * Extraer y formatear los mensajes de error de Zod
@@ -72,12 +72,12 @@ export class AccountsController {
                 return res.status(400).json({
                     success: false,
                     message: "Error de validación",
-                    errors: errorMessages
+                    errors: errorMessages                    
                 });
             }
 
-            // * Si la validación es exitosa, crear la cuenta
-            const data = await services.updateAccount({ account_id: req.params.account_id, accountData: req.body });
+            // * Si la validación es exitosa, crear la categoría
+            const data = await services.updateCategory({ category_id: req.params.category_id, categoryData: req.body });
             res.status(201).json({
                 success: true,
                 message: data.message
