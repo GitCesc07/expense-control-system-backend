@@ -1,5 +1,10 @@
 import swaggerJSDoc from "swagger-jsdoc";
-import { AccountsInterface, CategoriesInterface } from "../modules";
+import {
+    AccountsInterface,
+    CategoriesInterface,
+    CreditCardInterface,
+    CreditCardPaymentInterface
+} from "../modules";
 
 export const swaggerDocument = swaggerJSDoc({
     definition: {
@@ -17,10 +22,12 @@ export const swaggerDocument = swaggerJSDoc({
         components: {
             schemas: {
                 AccountsInterface: AccountsInterface,
-                CategoriesInterface: CategoriesInterface
+                CategoriesInterface: CategoriesInterface,
+                CreditCardInterface: CreditCardInterface,
+                CreditCardPaymentInterface: CreditCardPaymentInterface
             }
         }
     },
 
-    apis: [ "src/modules/**/*.docs.ts"]
+    apis: ["src/modules/**/*.docs.ts"]
 });

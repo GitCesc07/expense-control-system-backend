@@ -1,7 +1,6 @@
 export * from "./accounts/models/accounts.model";
 export * from "./categories/models/categories.model";
 export * from "./creditCard/models/creditCard.model";
-export * from "./creditCardHistoryDetails/models/creditCardHistoryDetails.model";
 export * from "./creditCardPayment/models/creditCardPayment.model";
 export * from "./motion/models/motion.model";
 export * from "./movementLimits/models/movementLimits.model";

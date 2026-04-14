@@ -26,7 +26,6 @@ system-backend/
 │   │   ├── accounts/     # Gestión de cuentas
 │   │   ├── categories/   # Categorías de gastos
 │   │   ├── creditCard/   # Tarjetas de crédito
-│   │   ├── creditCardHistoryDetails/  # Historial de tarjetas
 │   │   ├── creditCardPayment/         # Pagos de tarjetas
 │   │   ├── debts/        # Deudas
 │   │   ├── detailsDebts/ # Detalles de deudas
